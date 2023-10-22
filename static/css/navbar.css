@@ -1,0 +1,97 @@
+/*
+  =========================================================
+                     BARRA DE NAVEGACIÓN
+  =========================================================
+*/
+
+nav {
+  position: absolute;
+  z-index: 2;
+  width: 100%;
+  height: 0;
+  margin: 0;
+  background-color: var(--blanco-transparente);
+  text-align: center;
+  overflow: hidden;
+  transition: height 0.3s linear;
+}
+
+nav ul {
+  display: flex;
+  flex-direction: column;
+}
+
+nav ul li {
+  margin: 0.5em 0;
+}
+
+nav > ul > li > a,
+nav > ul > li > span {
+  padding: 0.25em 0;
+  color: var(--azul-pacifico);
+  font-weight: 700;
+  transition: all 0.3s;
+}
+
+nav > ul > li > span {
+  cursor: pointer;
+}
+
+nav a:hover,
+nav a:focus,
+nav > ul > li > span:hover,
+nav > ul > li > span:focus {
+  color: var(--azul-zafiro);
+}
+
+.lista-servicios {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.3s linear;
+}
+
+.lista-servicios a {
+  color: var(--azul-picton);
+  font-weight: 600;
+}
+
+/* .lista-servicios > li > a:hover,
+.lista-servicios > li > a:focus {
+  color: var(--azul-zafiro);
+} */
+
+@media (min-width: 900px) {
+  nav {
+    position: static;
+    height: fit-content;
+    padding-bottom: 0.4375em;
+    background-color: var(--mostaza-transparente);
+    overflow: visible;
+  }
+  nav > ul {
+    flex-direction: row;
+    justify-content: center;
+    gap: 2em;
+  }
+  nav > ul > li {
+    margin: 0;
+  }
+  nav > ul > li > a:hover,
+  nav > ul > li > a:focus,
+  nav > ul > li > span:hover,
+  nav > ul > li > span:focus {
+    box-shadow: 0 3px var(--azul-zafiro);
+  }
+  .lista-servicios {
+    position: absolute;
+    left: 0;
+    top: 138px;
+    width: 100%;
+    height: 0;
+    background-color: var(--blanco-transparente);
+    transition: height 0.2s linear;
+  }
+  .lista-servicios-abierta {
+    height: 280px;
+  }
+}

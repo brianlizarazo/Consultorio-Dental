@@ -1,0 +1,33 @@
+<!-- Barra de navegación -->
+<nav>
+  <ul class="lista">
+    <li><a href="/">Inicio</a></li>
+    <li><span class="servicios">Servicios</span></li>
+    <ul class="lista lista-servicios">
+      <li><a href="/servicios/odontologia-general">Odontología general</a></li>
+      <li><a href="/servicios/limpieza-dental">Limpieza dental</a></li>
+      <li><a href="/servicios/periodoncia">Periodoncia</a></li>
+      <li><a href="/servicios/protesis-removibles">Prótesis removibles</a></li>
+      <li><a href="/servicios/tratamiento-de-caries">Tratamiento de caries</a></li>
+      <li><a href="/servicios/tratamiento-de-conducto">Tratamiento de conducto</a></li>
+      <li><a href="/servicios/evaluacion-radiografica">Evaluación clínica y radiográfica</a></li>
+      <li><a href="/servicios/coronas-y-puentes">Coronas y puentes</a></li>
+    </ul>
+    {% if request.session.username %}
+      <li><a href="/administrar-citas">Administrar citas</a></li>
+    {% else %}
+      <li><a href="/solicitar-cita">Solicitar una cita</a></li>
+    {% endif %}
+    {% if request.session.username %}
+      <li><a href="/administrar-doctores">Administrar doctores</a></li>
+    {% else %}
+      <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+    {% endif %}
+    <li><a href="/contactos">Contáctanos</a></li>
+    {% if request.session.username %}
+      <li><a href="/logout">Cerrar sesión</a></li>
+    {% else %}
+      <li><a href="/login">Iniciar sesión</a></li>
+    {% endif %}
+  </ul>
+</nav>

@@ -1,0 +1,98 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/superponer-header-y-navbar.css' %}" />
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Contáctanos | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <section class="banner">
+    <img src="{% static 'images/portadas/contactos.jpg' %}" alt="Profesional sosteniendo una radiografía dental" class="slider-imagen">
+  </section>
+  <h1 class="section-title contacto-title">Contáctanos</h1>
+  <section class="section-container">
+    <div class="contacto-formulario">
+      <form action="procesar-mensaje" method="POST" id="form-procesar-mensaje" autocomplete="off">
+        {% csrf_token %}
+
+        <div class="elemento-formulario">
+          <input type="text" name="nombre" id="nombre" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}" placeholder="Primer nombre">
+        </div>
+        <br><br>
+
+        <div class="elemento-formulario">
+          <input type="text" name="apellido" id="apellido" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}" placeholder="Primer apellido">
+        </div>
+        <br><br>
+
+        <div class="elemento-formulario">
+          <input type="email" name="email" id="email" class="campo" pattern="[a-zA-Z0-9.^_+!#$%&/='?*`}{|-]{1,64}[@][a-zA-Z0-9.-]{1,253}[.][a-z]{2,18}" placeholder="Correo electrónico">
+        </div>
+        <br><br>
+
+        <div class="elemento-formulario">
+          <input type="phone" name="phone" id="phone" class="campo" pattern="[0][0-9]{3}[-][0-9]{7}" placeholder="Número de teléfono">
+        </div>
+        <br><br>
+
+        <div class="elemento-formulario">
+          <textarea name="mensaje" id="mensaje" class="campo" cols="30" rows="8" placeholder="Tu mensaje"></textarea>
+        </div>
+        <br><br>
+
+        <div class="centrar">
+          <input type="submit" class="boton boton-small" value="Enviar">
+        </div>
+      </form>
+    </div>
+
+    <div class="contacto-principal">
+      <p>Aquí en la Clínica Dental Díaz, le ofrecemos atención especializada y compasiva para ayudar a los pacientes de todas las edades a disfrutar de una salud óptima y felicidad.</p>
+      <p>Esperamos con interés escuchar de usted y agradecemos la oportunidad de contarle más acerca de nuestra práctica de vanguardia y los muchos servicios que brindamos.</p>
+      <p>Ya sea que tenga preguntas sobre nuestra oficina, tenga interés en una consulta o desee programar una cita para recibir atención, nuestro amable y experto equipo da la bienvenida a su llamada telefónica. También puede comunicarse con nosotros en línea con nuestro sencillo y conveniente formulario "Contáctanos".</p>
+      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d981.2450131853361!2d-67.0401488897866!3d10.343479842436771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a8d64f4810c4f%3A0xa05be044edb10f21!2sGrupo%20M%C3%A9dico%20Torre%20Royal!5e0!3m2!1ses-419!2sve!4v1673315489481!5m2!1ses-419!2sve" width="400" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="contacto-mapa"></iframe>
+    </div>
+
+    <div class="contacto-detalles">
+      <div class="section-detail">
+        <h2>Dirección de correo electrónico</h2>
+        <p>clinicadentaldiaz1987@gmail.com</p>
+      </div>
+      <div class="section-detail">
+        <h2>Números de teléfono</h2>
+        <p>0212-3215062</p>
+        <p>0414-1240945</p>
+      </div>
+      <div class="section-detail">
+        <h2>Nuestra ubicación</h2>
+        <p>Avenida Bermúdez, Torre Royal, Piso 3, Oficina 32. Los Teques - Edo. Miranda</p>
+      </div>
+      <div class="section-detail">
+        <h2>Síguenos</h2>
+        <ul class="lista">
+          <li><i class="fa-brands fa-square-facebook"></i></li>
+          <li>
+            <a
+              href="https://www.instagram.com/dentistadromandiaz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </li>
+          <li><i class="fa-brands fa-twitter"></i></li>
+          <li><i class="fa-brands fa-youtube"></i></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'js/ajax/procesar-mensaje.js' %}"></script>
+{% endblock %}

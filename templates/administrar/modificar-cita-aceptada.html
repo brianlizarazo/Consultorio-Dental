@@ -1,0 +1,97 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <title>Modificar cita aceptada | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <section class="contenedor-formulario">
+    <h1>Modificar cita</h1>
+    <form action="/cambiar-cita-aceptada" method="POST" autocomplete="off">
+      {% csrf_token %}
+
+      <input type="hidden" id="id_cita" name="id_cita" value="{{ cita_aceptada.cita.id_cita }}">
+
+      <div class="contenedor-campo">
+        <label for="doctor">Doctor</label>
+        <select id="doctor" name="doctor" class="campo">
+          <option value="">Seleccione un doctor</option>
+          {% for doctor in doctores %}
+            {% if doctor == cita_aceptada.doctor %}
+              <option value="{{ doctor.ci_doctor }}" selected>{{ doctor.nacionalidad.cod_nacionalidad }}-{{ doctor.ci_doctor }} {{ doctor.nombres }}, {{ doctor.apellidos }}</option>
+            {% else %}
+              <option value="{{ doctor.ci_doctor }}">{{ doctor.nacionalidad.cod_nacionalidad }}-{{ doctor.ci_doctor }} {{ doctor.nombres }}, {{ doctor.apellidos }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <div class="contenedor-campo">
+        <label for="diagnostico">Diagnóstico</label>
+        <select id="diagnostico" name="diagnostico" class="campo">
+          <option value="">Seleccione un diagnóstico</option>
+          {% for diagnostico in diagnosticos %}
+            {% if diagnostico == cita_aceptada.diagnostico %}
+              <option value="{{ diagnostico.cod_diagnostico }}" selected>{{ diagnostico.descripcion_diagnostico }}</option>
+            {% else %}
+              <option value="{{ diagnostico.cod_diagnostico }}">{{ diagnostico.descripcion_diagnostico }}</option>
+            {% endif %}
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <div class="contenedor-campo">
+        <p>¿La cita fue cumplida a la fecha acordada?</p>
+        <div class="contenedor-radio">
+          {% if cita_aceptada.cita_cumplida == True %}
+            <input type="radio" id="cita-cumplida-true" name="cita-cumplida" value="True" checked>
+          {% else %}
+            <input type="radio" id="cita-cumplida-true" name="cita-cumplida" value="True">
+          {% endif %}
+          <label for="cita-cumplida-true" class="label-radio">Sí</label>
+        </div>
+        <div class="contenedor-radio">
+          {% if cita_aceptada.cita_cumplida == False %}
+            <input type="radio" id="cita-cumplida-false" name="cita-cumplida" value="False" checked>
+          {% else %}
+            <input type="radio" id="cita-cumplida-false" name="cita-cumplida" value="False">
+          {% endif %}
+          <label for="cita-cumplida-false" class="label-radio">No</label>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Esta sección está oculta si la cita fue cumplida o aún no se sabe -->
+      <div id="motivo-ausencia">
+        <div class="contenedor-campo">
+          <label for="ausencia">Motivo de la ausencia</label>
+          <select id="ausencia" name="ausencia" class="campo">
+            <option value="">Seleccione un motivo de ausencia</option>
+            {% for motivo_ausencia in motivos_ausencia %}
+              {% if motivo_ausencia == cita_aceptada.ausencia %}
+                <option value="{{ motivo_ausencia.cod_ausencia }}" selected>{{ motivo_ausencia.descripcion_ausencia }}</option>
+              {% else %}
+                <option value="{{ motivo_ausencia.cod_ausencia }}">{{ motivo_ausencia.descripcion_ausencia }}</option>
+              {% endif %}
+            {% endfor %}
+          </select>
+        </div>
+      </div>
+      <br><br>
+      <!-- Esta sección está oculta si la cita fue cumplida o aún no se sabe -->
+
+      <div class="centrar">
+        <input type="submit" value="Modificar" id="enviar" name="enviar" class="boton boton-grande">
+      </div>
+    </form>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/modificar-cita-aceptada.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/administrar-citas.css' %}">
+  <title>Ver doctor | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <div class="contenedor-tablas">
+    <h1 class="titulo">Ver doctor</h1>
+    <table class="tabla-visualizar">
+      <tr>
+        <th>Cédula de Identidad</th>
+        <td>{{ doctor.nacionalidad.cod_nacionalidad }}-{{ doctor.ci_doctor }}</td>
+      </tr>
+      <tr>
+        <th>Nombres</th>
+        <td>{{ doctor.nombres }}</td>
+      </tr>
+      <tr>
+        <th>Apellidos</th>
+        <td>{{ doctor.apellidos }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de nacimiento</th>
+        <td>{{ doctor.fecha_nacimiento }}</td>
+      </tr>
+      <tr>
+        <th>Sexo</th>
+        <td>{{ doctor.sexo.descripcion_sexo }}</td>
+      </tr>
+      <tr>
+        <th>Dirección</th>
+        {% if doctor.direccion %}
+          <td>{{ doctor.direccion }}</td>
+        {% else %}
+          <td>-</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th>Especialidad</th>
+        <td>{{ doctor.especialidad.descripcion_especialidad }}</td>
+      </tr>
+      {% for telefono_doctor in telefonos_doctor %}
+        {% if forloop.counter == 1 %}
+          <tr>
+            <th rowspan="{{ telefonos_doctor|length }}">Teléfonos</th>
+            <td>{{ telefono_doctor }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td>{{ telefono_doctor }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      {% for email_doctor in emails_doctor %}
+        {% if forloop.counter == 1 %}
+          <tr>
+            <th rowspan="{{ emails_doctor|length }}">Correos electrónicos</th>
+            <td>{{ email_doctor }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td>{{ email_doctor }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+    </table>
+  </div>
+{% endblock %}

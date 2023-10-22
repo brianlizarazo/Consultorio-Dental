@@ -1,0 +1,110 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/administrar-citas.css' %}">
+  <title>Ver cita | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <div class="contenedor-tablas">
+    <h1 class="titulo">Ver cita</h1>
+    <table class="tabla-visualizar">
+      <tr>
+        <th>Cliente</th>
+        <td class="dato-destacado">
+          <a href="/ver-cliente/{{ cita.cliente.ci_cliente }}">{{ cita.cliente.nacionalidad.cod_nacionalidad }}-{{ cita.cliente.ci_cliente }}</a>
+        </td>
+      </tr>
+      <tr>
+        <th>Doctor solicitado</th>
+        {% if cita.doctor_cita %}
+          <td class="dato-destacado">
+            <a href="/ver-doctor/{{ cita.doctor_cita.ci_doctor }}">{{ cita.doctor_cita.nacionalidad.cod_nacionalidad }}-{{ cita.doctor_cita.ci_doctor }}</a>
+          </td>
+        {% else %}
+          <td>-</td>
+        {% endif %}
+      </tr>
+      {% if cita_aceptada %}
+        <tr>
+          <th>Doctor asignado</th>
+          {% if cita_aceptada.doctor %}
+            <td class="dato-destacado">
+              <a href="/ver-doctor/{{ cita_aceptada.doctor.ci_doctor }}">{{ cita_aceptada.doctor.nacionalidad.cod_nacionalidad }}-{{ cita_aceptada.doctor.ci_doctor }}</a>
+            </td>
+          {% else %}
+            <td>-</td>
+          {% endif %}
+        </tr>
+      {% endif %}
+      <tr>
+        <th>Fecha</th>
+        <td>{{ cita.fecha|date:"l, d \d\e F \d\e Y" }}</td>
+      </tr>
+      <tr>
+        <th>Hora</th>
+        <td>{{ cita.hora|date:"h:i a" }}</td>
+      </tr>
+      <tr>
+        <th>Motivo de la cita</th>
+        <td>{{ cita.motivo.descripcion_motivo }}</td>
+      </tr>
+      <tr>
+        <th>Urgencia</th>
+        <td>{{ cita.urgencia.descripcion_urgencia }}</td>
+      </tr>
+      <tr>
+        <th>Detalles</th>
+        {% if cita.detalles %}
+          <td>{{ cita.detalles }}</td>
+        {% else %}
+          <td>-</td>
+        {% endif %}
+      </tr>
+      {% for sintoma_cita in sintomas_cita %}
+        {% if forloop.counter == 1 %}
+          <tr>
+            <th rowspan="{{ sintomas_cita|length }}">Síntomas de la cita</th>
+            <td>{{ sintoma_cita.sintoma.descripcion_sintoma }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td>{{ sintoma_cita.sintoma.descripcion_sintoma }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      {% if cita_aceptada %}
+        <tr>
+          <th>Diagnóstico</th>
+          {% if cita_aceptada.diagnostico %}
+            <td>{{ cita_aceptada.diagnostico.descripcion_diagnostico }}</td>
+          {% else %}
+            <td>-</td>
+          {% endif %}
+        </tr>
+        <tr>
+          <th>¿Cita cumplida?</th>
+          {% if cita_aceptada.cita_cumplida is None %}
+            <td>-</td>
+          {% elif cita_aceptada.cita_cumplida == True %}
+            <td>Sí</td>
+          {% elif cita_aceptada.cita_cumplida == False %}
+            <td>No</td>
+          {% endif %}
+        </tr>
+        {% if cita_aceptada.cita_cumplida == False %}
+          <tr>
+            <th>Motivo de la ausencia</th>
+            {% if cita_aceptada.ausencia %}
+              <td>{{ cita_aceptada.ausencia.descripcion_ausencia }}</td>
+            {% else %}
+              <td>-</td>
+            {% endif %}
+          </tr>
+        {% endif %}
+      {% endif %}
+    </table>
+  </div>
+{% endblock %}

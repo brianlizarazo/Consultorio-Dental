@@ -1,0 +1,218 @@
+.contenedor-tablas {
+  margin: 2em auto;
+  max-width: 1140px;
+  text-align: center;
+}
+
+.titulo {
+  color: var(--azul-picton);
+  font-size: 3rem;
+  text-shadow: 2px 2px black;
+}
+
+.no-hay-citas {
+  margin: 0.625em 0;
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+
+.a-la-derecha {
+  width: 80%;
+  margin: 0 auto;
+  text-align: right;
+}
+
+.tabla-personalizada,
+.tabla-personalizada tbody,
+.tabla-personalizada tbody tr,
+.tabla-personalizada tbody tr td {
+  display: block;
+}
+
+.tabla-personalizada {
+  border-collapse: collapse;
+  width: 80%;
+  margin: 1em auto;
+  font-size: 0.9375em;
+}
+
+.tabla-personalizada thead {
+  display: none;
+}
+
+.tabla-personalizada tbody tr {
+  margin-bottom: 1em;
+}
+
+.tabla-personalizada tbody tr td {
+  position: relative;
+  border-color: black;
+  border-style: solid;
+  border-width: 1px 2px;
+  padding: 8px 10px;
+  text-align: right;
+}
+
+.tabla-personalizada tbody tr td:first-of-type {
+  border-top-width: 2px;
+}
+
+.tabla-personalizada tbody tr td:last-of-type {
+  border-bottom-width: 2px;
+}
+
+.campo-resaltado {
+  font-weight: 600;
+}
+
+.tabla-personalizada tbody tr td::before {
+  content: attr(data-etiqueta);
+  position: absolute;
+  left: 0;
+  padding-left: 10px;
+  font-size: 0.9375em;
+  font-weight: 700;
+  text-align: left;
+}
+
+@media (min-width: 1100px) {
+  .a-la-derecha {
+    width: 1050px;
+  }
+  .tabla-personalizada {
+    display: table;
+    width: auto;
+    min-width: 1000px;
+    border-radius: 5px 5px 0 0;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    overflow: hidden; /* Para que se muestren los bordes redondos arriba de la tabla */
+  }
+  .tabla-personalizada thead {
+    display: table-header-group;
+  }
+  .tabla-personalizada thead tr {
+    background-color: var(--azul-picton);
+    color: white;
+  }
+  .tabla-personalizada thead tr th {
+    padding: 8px 10px;
+  }
+  .tabla-personalizada tbody {
+    display: table-row-group;
+  }
+  .tabla-personalizada tbody tr {
+    display: table-row;
+    margin-bottom: 0;
+    border-bottom: 1px solid #ddd;
+  }
+  .tabla-personalizada tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+  }
+  .tabla-personalizada tbody tr:last-of-type {
+    border-bottom: 2px solid var(--azul-picton);
+  }
+  .tabla-personalizada tbody tr td {
+    display: table-cell;
+    border: none;
+    text-align: center;
+  }
+  .tabla-personalizada tbody tr td::before {
+    content: none
+  }
+}
+
+.boton {
+  display: inline-block;
+  border: black solid 2px;
+  border-radius: 50px;
+  padding: 5px 10px;
+  background-color: white;
+  color: black;
+  font-weight: 700;
+  transition-duration: 200ms;
+}
+
+.boton-aceptar {
+  border-color: var(--verde-acierto);
+  color: var(--verde-acierto);
+}
+
+.boton-rechazar {
+  border-color: var(--rojo-error);
+  color: var(--rojo-error);
+}
+
+.boton-modificar {
+  border-color: var(--naranja);
+  color: var(--naranja);
+}
+
+.boton-deshacer {
+  border-color: var(--azul-deshacer);
+  color: var(--azul-deshacer);
+}
+
+.boton-aceptar:hover,
+.boton-aceptar:focus,
+.boton-rechazar:hover,
+.boton-rechazar:focus,
+.boton-modificar:hover,
+.boton-modificar:focus,
+.boton-deshacer:hover,
+.boton-deshacer:focus {
+  color: white;
+}
+
+.boton-aceptar:hover,
+.boton-aceptar:focus {
+  background-color: var(--verde-acierto);
+}
+
+.boton-rechazar:hover,
+.boton-rechazar:focus {
+  background-color: var(--rojo-error);
+}
+
+.boton-modificar:hover,
+.boton-modificar:focus {
+  background-color: var(--naranja);
+}
+
+.boton-deshacer:hover,
+.boton-deshacer:focus {
+  background-color: var(--azul-deshacer);
+}
+
+.tabla-visualizar {
+  border-collapse: collapse;
+  max-width: 700px;
+  margin: 1em auto;
+  border-radius: 5px 0 0 5px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+  font-size: 0.9375em;
+  text-align: center;
+  overflow: hidden; /* Para que se muestren los bordes redondos arriba de la tabla */
+}
+
+.tabla-visualizar tr th {
+  background-color: var(--azul-picton);
+  color: white;
+}
+
+.tabla-visualizar th,
+.tabla-visualizar td {
+  padding: 8px 10px;
+}
+
+.tabla-visualizar tr {
+  border-bottom: 1px solid #ddd;
+}
+
+.tabla-visualizar tr:nth-of-type(even) {
+  background-color: #f3f3f3;
+}
+
+.tabla-visualizar tr td.dato-destacado {
+  font-weight: 600;
+}

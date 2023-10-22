@@ -1,0 +1,17 @@
+@media (min-width: 900px) {
+  header {
+    z-index: 1;
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+  }
+  nav {
+    position: absolute;
+    top: 112px;
+  }
+  .lista-servicios {
+    left: 0;
+    top: 26px;
+  }
+}

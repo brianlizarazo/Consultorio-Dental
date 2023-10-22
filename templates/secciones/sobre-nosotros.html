@@ -1,0 +1,72 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/superponer-header-y-navbar.css' %}" />
+  <title>Sobre nosotros | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <!-- Banner con una imagen relacionada a la Clínica Dental Díaz -->
+  <section class="banner">
+    <img src="{% static 'images/portadas/sobre-nosotros.jpg' %}" alt="Profesional sosteniendo una dentadura postiza" class="slider-imagen">
+  </section>
+
+  <!-- Título de la página -->
+  <h1 class="section-title sobre-nosotros-title">Clínica Dental Díaz</h1>
+
+  <!-- Información de la Clínica Dental Díaz -->
+  <section class="section-container">
+    <!-- Descripción de la Clínica Dental Díaz -->
+    <div class="section-content">
+      <p>Con más de 30 años de experiencia, aquí en la Clínica Dental Díaz, estamos comprometidos a proporcionar la más alta calidad de la atención clínica y servicio personalizado en un ambiente cálido y compasivo. Nuestros médicos y personal disfrutan conociendo a cada paciente y a sus familias, y les encanta crear relaciones que duran varias generaciones.</p>
+      <p>Fundada en 1987 por el Doctor Lionel Díaz Rodríguez en la Avenida Bermúdez, la Clínica Dental Díaz ha experimentado cambios en su infraestuctura y equipamento, con el propósito de brindar siempre una atención de calidad y de vanguardia a nuestra apreciada clientela. Por su parte, el número de pacientes de la clínica ha ido en aumento desde su creación, muchos de los cuales continúan siendo clientes frecuentes.</p>
+      <p>Con nuestro personal atento y dedicado, nos esforzamos por ofrecerle la experiencia dental más cómoda y relajada en cualquier lugar. Nuestras instalaciones de última generación nos da la oportunidad de proporcionar para usted, su familia y amigos lo mejor que la odontología moderna tiene para ofrecer.</p>
+      <p>El cuidado que proporcionamos es cómodo, atento, y cualquier cosa menos típico, así que ¿por qué no experimentar por sí mismo? Póngase en contacto con nosotros hoy para solicitar una cita.</p>
+
+      <!-- Imagen de la Clínica Dental Díaz -->
+      <div class="centrar">
+        <img src="{% static 'images/sobre-nosotros/foto-consultorio.jpg' %}" alt="Consultorio" class="sobre-nosotros-imagen">
+      </div>
+    </div>
+
+    <!-- Detalles de la Clínica Dental Díaz -->
+    <div class="section-details">
+      <!-- Imagen pequeña en los detalles -->
+      <div class="details-image">
+        <img src="{% static 'images/sobre-nosotros/foto-doctor.jpg' %}" alt="Doctor" class="foto-doctor">
+      </div>
+
+      <!-- Datos relativos a la Clínica Dental Díaz -->
+      <div class="section-detail">
+        <h2>Nuestro equipo</h2>
+        <p>Dr. Lionel Díaz</p>
+        <p>Dr. Román Díaz</p>
+      </div>
+
+      <div class="section-detail">
+        <h2>Nuestra ubicación</h2>
+        <p>Avenida Bermúdez, Torre Royal, Piso 3, Oficina 32. Los Teques - Edo. Miranda</p>
+      </div>
+
+      <div class="section-detail">
+        <h2>Síguenos</h2>
+        <ul class="lista">
+          <li><i class="fa-brands fa-square-facebook"></i></li>
+          <li>
+            <a
+              href="https://www.instagram.com/dentistadromandiaz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </li>
+          <li><i class="fa-brands fa-twitter"></i></li>
+          <li><i class="fa-brands fa-youtube"></i></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+{% endblock %}

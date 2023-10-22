@@ -1,0 +1,135 @@
+/*
+  ============================================================
+                      FOOTER DEL SITIO WEB
+  ============================================================
+*/
+
+footer {
+  padding: 3em 2em;
+  /* background-color: #2b354b; */
+  background-color: var(--azul-marino);
+  color: white;
+  font-size: 1rem;
+}
+
+footer h2 {
+  margin-bottom: 0.75em;
+}
+
+.footer-principal {
+  display: flex;
+  flex-direction: column;
+  gap: 2em;
+  margin-bottom: 2.5em;
+}
+
+.footer-acerca-de,
+.footer-horarios {
+  width: 100%;
+}
+
+/* Sección "acerca de" - Inicio */
+.footer-acerca-de {
+  text-align: center;
+}
+
+.footer-acerca-de-logo {
+  -webkit-user-drag: none;
+  width: 100%;
+  max-width: 300px;
+}
+
+.footer-acerca-de p {
+  line-height: 1.75em;
+}
+
+.footer-acerca-de-redes ul {
+  display: flex;
+  justify-content: center;
+  gap: 2em;
+}
+/* Sección "acerca de" - Final */
+
+/* Sección de enlaces rápidos - Inicio */
+.footer-enlaces {
+  display: none;
+  width: 20%;
+  min-width: 195px;
+  margin: 0 1em;
+}
+
+.footer-enlaces li {
+  margin: 0.5em 0;
+}
+
+.footer-enlaces a {
+  padding: 0.25em 0;
+  color: white;
+  transition: all 0.3s;
+}
+
+.footer-enlaces a:hover,
+.footer-enlaces a:focus {
+  color: var(--mostaza);
+}
+/* Sección de enlaces rápidos - Final */
+
+/* Sección de horarios de atención - Inicio */
+.footer-horarios table {
+  width: 100%;
+  border-spacing: 0px;
+}
+
+.footer-horarios table td {
+  border-bottom: 1px solid var(--mostaza);
+  padding: 0.375em 0;
+}
+
+.footer-horarios table td:last-child {
+  text-align: right;
+}
+/* Sección de horarios de atención - Final */
+
+/* Sección de copyright - Inicio */
+.footer-copyright {
+  text-align: center;
+}
+
+.footer-copyright p {
+  margin: 0;
+  font-size: 0.75rem;
+  font-weight: 400;
+}
+
+.footer-copyright p span {
+  display: block;
+}
+/* Sección de copyright - Final */
+
+@media (min-width: 900px) {
+  footer {
+    padding: 3em 3em 2em;
+  }
+  .footer-principal {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .footer-acerca-de {
+    width: 35%;
+    text-align: left;
+  }
+  .footer-acerca-de-logo {
+    min-width: 275px;
+  }
+  .footer-enlaces {
+    display: block;
+  }
+  .footer-horarios {
+    width: 35%;
+    min-width: 260px;
+  }
+  .footer-copyright p span {
+    display: inline-block;
+  }
+}

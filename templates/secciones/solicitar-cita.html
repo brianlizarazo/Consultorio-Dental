@@ -1,0 +1,267 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <link rel="stylesheet" href="{% static 'css/multi-select-tag.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Solicitar una cita | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <section class="contenedor-formulario">
+    <h1>Solicitar una cita</h1>
+    <form id="form-solicitar-cita" action="procesar-cita" method="POST" autocomplete="off">
+      {% csrf_token %}
+      <div class="contenedor-campo">
+        <p>¿Es la primera vez que solicita una cita por este medio?</p>
+        <div class="contenedor-radio">
+          <input type="radio" id="primera-vez-true" name="primera-vez" value="True">
+          <label for="primera-vez-true" class="label-radio">Sí</label>
+        </div>
+        <div class="contenedor-radio">
+          <input type="radio" id="primera-vez-false" name="primera-vez" value="False">
+          <label for="primera-vez-false" class="label-radio">No</label>
+        </div>
+      </div>
+
+      <!-- Cédula de Identidad del cliente -->
+      <div class="contenedor-campo">
+        <div class="cedula">
+          <!-- Nacionalidad del cliente -->
+          <label for="nacionalidad-cliente" class="label-oculta">Nacionalidad</label>
+          <select id="nacionalidad-cliente" name="nacionalidad-cliente" class="campo nacionalidad" title="nacionalidad-cliente" required>
+            {% for nacionalidad in nacionalidades %}
+              <option value="{{ nacionalidad.cod_nacionalidad }}">{{ nacionalidad.cod_nacionalidad }}</option>
+            {% endfor %}
+          </select>
+          <br><br>
+          <!-- Número de Cédula de Identidad del cliente-->
+          <label for="nci-cliente" class="label-oculta">Cédula de Identidad</label>
+          <input type="number" min="1" max="100000000" id="nci-cliente" name="nci-cliente" class="campo nci" placeholder="Número de cédula" title="nci-cliente" required>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Esta sección está oculta si el usuario ya ha solicitado una cita antes -->
+      <div id="datos-personales-cliente">
+        <!-- Nombres del cliente -->
+        <div class="contenedor-campo">
+          <label for="nombres">Nombres</label>
+          <input type="text" id="nombres" name="nombres" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}"
+            title="Los nombres introducidos no cumplen con el formato establecido" placeholder="Nombres">
+        </div>
+        <br><br>
+
+        <!-- Apellidos del cliente -->
+        <div class="contenedor-campo">
+          <label for="apellidos">Apellidos</label>
+          <input type="text" id="apellidos" name="apellidos" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}"
+            title="Los apellidos introducidos no cumplen con el formato establecido" placeholder="Apellidos">
+        </div>
+        <br><br>
+
+        <!-- Fecha de nacimiento del cliente -->
+        <div class="contenedor-campo">
+          <label for="fecha-de-nacimiento">Fecha de nacimiento</label>
+          <input type="date" id="fecha-de-nacimiento" name="fecha-de-nacimiento" class="campo">
+        </div>
+        <br><br>
+
+        <!-- Sexo del cliente -->
+        <div class="contenedor-campo">
+          <label for="sexo">Sexo</label>
+          <select id="sexo" name="sexo" class="campo">
+            {% for sexo in sexos %}
+              <option value="{{ sexo.cod_sexo }}">{{ sexo.descripcion_sexo }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br><br>
+
+        <!-- Dirección del cliente -->
+        <div class="contenedor-campo">
+          <label for="direccion">Dirección</label> <br>
+          <textarea id="direccion" name="direccion" class="campo" rows="6" cols="50"
+            placeholder="Ingrese su dirección aquí"></textarea>
+        </div>
+        <br><br>
+
+        <!-- Necesidades especiales del cliente -->
+        <div class="contenedor-campo">
+          <label for="necesidad-especial">¿Tiene alguna necesidad especial?</label>
+          <select id="necesidad-especial" name="necesidad-especial" class="campo">
+            {% for necesidad in necesidades %}
+              <option value="{{ necesidad.cod_necesidad_especial }}">{{ necesidad.descripcion_necesidad_especial }}</option>
+            {% endfor %}
+          </select>
+        </div>
+        <br><br>
+
+        <!-- Teléfonos del cliente -->
+        <div class="contenedor-campo">
+          <div id="telefonos">
+            <label for="telefono1">Número de teléfono</label>
+            <input type="tel" id="telefono1" name="telefono" class="campo telefono" pattern="[0][0-9]{3}[-][0-9]{7}"
+              title="El número de teléfono debe tener el siguiente formato: 0XXX-XXXXXXX"
+              placeholder="Número de teléfono">
+          </div>
+          <div class="agregar-y-remover agregar-telefono" id="agregar-telefono">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Agregar un número de teléfono</span>
+          </div>
+          <div class="agregar-y-remover remover-telefono" id="remover-telefono">
+            <i class="fa-solid fa-circle-minus"></i>
+            <span>Remover un número de teléfono</span>
+          </div>
+        </div>
+        <br><br>
+
+        <!-- Correos electrónicos del cliente -->
+        <div class="contenedor-campo">
+          <div id="emails">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email1" name="email" class="campo email"
+              pattern="[a-zA-Z0-9.^_+!#$%&/='?*`}{|-]{1,64}[@][a-zA-Z0-9.-]{1,253}[.][a-z]{2,18}"
+              title="El correo electrónico no cumple con el formato requerido" placeholder="Correo electrónico">
+          </div>
+          <div class="agregar-y-remover agregar-email" id="agregar-email">
+            <i class="fa-solid fa-circle-plus"></i>
+            <span>Agregar un correo electrónico</span>
+          </div>
+          <div class="agregar-y-remover remover-email" id="remover-email">
+            <i class="fa-solid fa-circle-minus"></i>
+            <span>Remover un correo electrónico</span>
+          </div>
+        </div>
+        <br><br>
+
+        <!-- Parentesco del nuevo cliente con otros pacientes -->
+        <div class="contenedor-campo">
+          <p>¿Tiene parentesco con otro paciente de la clínica?</p>
+          <div class="contenedor-radio">
+            <input type="radio" id="tiene-parentesco-true" name="tiene-parentesco" value="True">
+            <label for="tiene-parentesco-true" class="label-radio">Sí</label>
+          </div>
+          <div class="contenedor-radio">
+            <input type="radio" id="tiene-parentesco-false" name="tiene-parentesco" value="False">
+            <label for="tiene-parentesco-false" class="label-radio">No</label>
+          </div>
+        </div>
+        <br><br>
+
+        <!-- Esta sección está oculta si el usuario no tiene un pariente -->
+        <div id="agregar-pariente">
+          <div class="contenedor-campo">
+            <p>Indique la cédula de identidad de su pariente</p>
+            <div class="cedula">
+              <label for="nacionalidad-pariente" class="label-oculta">Nacionalidad del pariente</label>
+              <select id="nacionalidad-pariente" name="nacionalidad-pariente" class="campo nacionalidad">
+                {% for nacionalidad in nacionalidades %}
+                  <option value="{{ nacionalidad.cod_nacionalidad }}">{{ nacionalidad.cod_nacionalidad }}</option>
+                {% endfor %}
+              </select>
+              <br><br>
+              <label for="nci-pariente" class="label-oculta">Cédula de Identidad del pariente</label>
+              <input type="number" min="1" max="100000000" id="nci-pariente" name="nci-pariente" class="campo nci" placeholder="Número de cédula de su pariente">
+            </div>
+          </div>
+          <br><br>
+
+          <div class="contenedor-campo">
+            <label for="parentesco">¿Qué parentesco tiene con el paciente?</label>
+            <select name="parentesco" id="parentesco" class="campo">
+              {% for parentesco in parentescos %}
+                <option value="{{ parentesco.cod_parentesco }}">{{ parentesco.descripcion_parentesco }}</option>
+              {% endfor %}
+            </select>
+          </div>
+        </div>
+        <br><br>
+        <!-- Esta sección está oculta si el usuario no tiene un pariente -->
+      </div>
+      <!-- Esta sección está oculta si el usuario ya ha solicitado una cita antes -->
+
+      <!-- Fecha de la cita -->
+      <div class="contenedor-campo">
+        <label for="fecha-cita">Fecha de la cita</label>
+        <input type="date" id="fecha-cita" name="fecha-cita" class="campo" title="fecha-cita" required>
+      </div>
+      <br><br>
+
+      <!-- Hora de la cita -->
+      <div class="contenedor-campo">
+        <label for="hora-cita">Hora de la cita</label>
+        <input type="time" id="hora-cita" name="hora-cita" class="campo" min="09:00" max="15:00" step="3600" title="hora-cita" required>
+      </div>
+      <br><br>
+
+      <!-- Motivo de la cita -->
+      <div class="contenedor-campo">
+        <label for="motivo-consulta">Motivo de la consulta</label>
+        <select id="motivo-consulta" name="motivo-consulta" class="campo" required>
+          {% for motivo in motivos %}
+            <option value="{{ motivo.cod_motivo }}">{{ motivo.descripcion_motivo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Síntomas del paciente -->
+      <div class="contenedor-campo">
+        <label for="sintomas">Signos y síntomas del paciente</label>
+        <select id="sintomas" name="sintomas" class="campo" multiple required>
+          {% for sintoma in sintomas %}
+            <option value="{{ sintoma.cod_sintoma }}">{{ sintoma.descripcion_sintoma }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Doctor que el paciente desea para la cita -->
+      <div class="contenedor-campo">
+        <label for="doctor-cita">¿Con qué doctor desea ser atendido?</label>
+        <select id="doctor-cita" name="doctor-cita" class="campo" required>
+          {% for doctor in doctores %}
+            <option value="{{ doctor.ci_doctor }}">{{ doctor }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Urgencia de la cita -->
+      <div class="contenedor-campo">
+        <label for="urgencia">Urgencia de la cita</label>
+        <select id="urgencia" name="urgencia" class="campo" required>
+          {% for urgencia in urgencias %}
+            <option value="{{ urgencia.cod_urgencia }}">{{ urgencia.descripcion_urgencia }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Detalles de la cita -->
+      <div class="contenedor-campo">
+        <label for="detalles">Detalles</label> <br>
+        <textarea id="detalles" name="detalles" class="campo" rows="6" cols="50" placeholder="Ingrese cualquier detalle adicional"></textarea>
+      </div>
+      <br><br>
+
+      <!-- Enviar los datos para solicitar una cita -->
+      <div class="centrar">
+        <input type="submit" value="Solicitar una cita" id="enviar" name="enviar" class="boton boton-grande">
+      </div>
+    </form>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'js/multi-select-tag.js' %}"></script>
+  <script src="{% static 'js/solicitar-cita.js' %}"></script>
+  <script src="{% static 'js/ajax/solicitar-cita.js' %}"></script>
+  <script>
+    new MultiSelectTag('sintomas')
+  </script>
+{% endblock %}

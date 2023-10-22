@@ -1,0 +1,130 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/formulario.css' %}">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.0/jquery.min.js" integrity="sha512-3gJwYpMe3QewGELv8k/BX9vcqhryRdzRMxVfq6ngyWXwo03GFEzjsUm8Q7RZcHPHksttq7/GFoxjCVUjkjvPdw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+  <title>Agregar un doctor | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <section class="contenedor-formulario">
+    <h1>Agregar doctor</h1>
+    <form id="form-agregar-doctor" action="registrar-doctor" method="POST" autocomplete="off">
+      {% csrf_token %}
+      <!-- Cédula de Identidad del doctor -->
+      <div class="contenedor-campo">
+        <div class="cedula">
+          <!-- Nacionalidad del doctor -->
+          <label for="nacionalidad-doctor" class="label-oculta">Nacionalidad</label>
+          <select id="nacionalidad-doctor" name="nacionalidad-doctor" class="campo nacionalidad" required>
+            {% for nacionalidad in nacionalidades %}
+              <option value="{{ nacionalidad.cod_nacionalidad }}">{{ nacionalidad.cod_nacionalidad }}</option>
+            {% endfor %}
+          </select>
+          <br><br>
+          <!-- Número de Cédula de Identidad del doctor-->
+          <label for="nci-doctor" class="label-oculta">Cédula de Identidad</label>
+          <input type="number" min="1" max="100000000" id="nci-doctor" name="nci-doctor" class="campo nci" placeholder="Número de cédula" required>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Nombres del doctor -->
+      <div class="contenedor-campo">
+        <label for="nombres">Nombres</label>
+        <input type="text" id="nombres" name="nombres" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}" title="Los nombres introducidos no cumplen con el formato establecido" placeholder="Nombres" required>
+      </div>
+      <br><br>
+
+      <!-- Apellidos del doctor -->
+      <div class="contenedor-campo">
+        <label for="apellidos">Apellidos</label>
+        <input type="text" id="apellidos" name="apellidos" class="campo" pattern="[a-zA-ZÀ-ž\s]{3,60}" title="Los apellidos introducidos no cumplen con el formato establecido" placeholder="Apellidos" required>
+      </div>
+      <br><br>
+
+      <!-- Fecha de nacimiento del doctor -->
+      <div class="contenedor-campo">
+        <label for="fecha-de-nacimiento">Fecha de nacimiento</label>
+        <input type="date" id="fecha-de-nacimiento" name="fecha-de-nacimiento" class="campo" required>
+      </div>
+      <br><br>
+
+      <!-- Sexo del doctor -->
+      <div class="contenedor-campo">
+        <label for="sexo">Sexo</label>
+        <select id="sexo" name="sexo" class="campo" required>
+          {% for sexo in sexos %}
+            <option value="{{ sexo.cod_sexo }}">{{ sexo.descripcion_sexo }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Dirección del doctor -->
+      <div class="contenedor-campo">
+        <label for="direccion">Dirección</label> <br>
+        <textarea id="direccion" name="direccion" class="campo" rows="6" cols="50" placeholder="Ingrese su dirección aquí"></textarea>
+      </div>
+      <br><br>
+
+      <!-- Especialidad del doctor -->
+      <div class="contenedor-campo">
+        <label for="especialidad">Especialidad</label>
+        <select id="especialidad" name="especialidad" class="campo" required>
+          {% for especialidad in especialidades %}
+            <option value="{{ especialidad.cod_especialidad }}">{{ especialidad.descripcion_especialidad }}</option>
+          {% endfor %}
+        </select>
+      </div>
+      <br><br>
+
+      <!-- Teléfonos del doctor -->
+      <div class="contenedor-campo">
+        <div id="telefonos">
+          <label for="telefono1">Número de teléfono</label>
+          <input type="tel" id="telefono1" name="telefono" class="campo telefono" pattern="[0][0-9]{3}[-][0-9]{7}" title="El número de teléfono debe tener el siguiente formato: 0XXX-XXXXXXX" placeholder="Número de teléfono">
+        </div>
+        <div class="agregar-y-remover agregar-telefono" id="agregar-telefono">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Agregar un número de teléfono</span>
+        </div>
+        <div class="agregar-y-remover remover-telefono" id="remover-telefono">
+          <i class="fa-solid fa-circle-minus"></i>
+          <span>Remover un número de teléfono</span>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Correos electrónicos del doctor -->
+      <div class="contenedor-campo">
+        <div id="emails">
+          <label for="email">Correo electrónico</label>
+          <input type="email" id="email1" name="email" class="campo email" pattern="[a-zA-Z0-9.^_+!#$%&/='?*`}{|-]{1,64}[@][a-zA-Z0-9.-]{1,253}[.][a-z]{2,18}" title="El correo electrónico no cumple con el formato requerido" placeholder="Correo electrónico">
+        </div>
+        <div class="agregar-y-remover agregar-email" id="agregar-email">
+          <i class="fa-solid fa-circle-plus"></i>
+          <span>Agregar un correo electrónico</span>
+        </div>
+        <div class="agregar-y-remover remover-email" id="remover-email">
+          <i class="fa-solid fa-circle-minus"></i>
+          <span>Remover un correo electrónico</span>
+        </div>
+      </div>
+      <br><br>
+
+      <!-- Enviar los datos para agregar doctor -->
+      <div class="centrar">
+        <input type="submit" value="Agregar doctor" id="enviar" name="enviar" class="boton boton-grande">
+      </div>
+    </form>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'js/agregar-doctor.js' %}"></script>
+  <script src="{% static 'js/ajax/agregar-doctor.js' %}"></script>
+{% endblock %}

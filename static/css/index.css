@@ -1,0 +1,624 @@
+/*
+  ===================================================
+                   ESTILOS GENERALES
+  ===================================================
+*/
+
+:root {
+  --azul-picton: #1aa7ec;
+  --turquesa-vikingo: #4adede;
+  --mostaza: #ffe45e;
+  --mostaza-transparente: rgba(255, 228, 94, 0.75);
+  --blanco-transparente: rgba(255, 255, 255, 0.75);
+  --blanco-icon: rgba(255, 255, 255, 0.15);
+  --azul-pacifico: #128fc8;
+  --azul-zafiro: #0067a5;
+  --azul-esmalte: #00468b;
+  --azul-esmalte-transparente: rgba(0, 70, 139, 0.75);
+  --azul-marino: #202a44;
+  --verde-acierto: #28a745;
+  --rojo-error: #dc3545;
+  --naranja: #ff9900;
+  --azul-deshacer: #007bff;
+}
+
+body {
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 400;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+.lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+a {
+  text-decoration: none;
+  color: black;
+}
+
+.section-title {
+  position: relative;
+  z-index: 1;
+  transform: translateY(-60%);
+  color: white;
+  font-family: "Montserrat", sans-serif;
+  font-size: 4rem;
+  font-weight: 600;
+  text-align: center;
+  text-shadow: 2px 2px 5px black;
+}
+
+.section-container {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  margin: -3em 2em 3em;
+  color: #3c3c3c;
+}
+
+.section-content p {
+  line-height: 1.5rem;
+  margin-top: 0;
+}
+
+.section-content ul {
+  line-height: 1.5rem;
+  margin-top: 0;
+}
+
+.details-image {
+  width: 100%;
+  margin-bottom: 2em;
+  text-align: center;
+}
+
+.details-image img {
+  width: 320px;
+  height: 320px;
+  border-radius: 10px;
+  object-fit: cover;
+}
+
+.details-image-servicios img {
+  height: 200px;
+}
+
+.section-detail {
+  margin-bottom: 2em;
+  border-left: 2px solid #eaeaea;
+  border-right: 2px solid #eaeaea;
+  border-radius: 10px;
+  text-align: center;
+  line-height: 1.5rem;
+}
+
+.section-detail h2 {
+  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+  padding: 10px 0;
+  color: black;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.section-detail p {
+  margin: 0;
+  padding: 10px 0;
+}
+
+.section-detail ul {
+  display: flex;
+  justify-content: center;
+  gap: 1em;
+  padding: 10px 0;
+}
+
+@media (min-width: 1000px) {
+  .section-container {
+    flex-direction: row;
+    justify-content: space-between;
+    gap: 0;
+  }
+  .section-content {
+    width: 65%;
+  }
+  .section-details {
+    width: 320px;
+  }
+}
+
+.centrar {
+  text-align: center;
+}
+
+.g-recaptcha {
+  display: inline-block;
+}
+
+.fa-brands {
+  font-size: 1.75em;
+}
+
+.fa-square-facebook {
+  color: #3b5998;
+}
+
+.fa-instagram {
+  color: #e1306c;
+}
+
+.fa-twitter {
+  color: #1da1f2;
+}
+
+.fa-youtube {
+  color: #ff0000;
+}
+
+/*
+  =======================================
+               BANNER SLIDER
+  =======================================
+*/
+
+/* Contenedor del banner y los enlaces circulares - Inicio */
+.banner-y-circulos {
+  position: relative;
+  margin-bottom: 150px;
+}
+@media (min-width: 750px) {
+  .banner-y-circulos {
+    margin-bottom: 125px;
+  }
+}
+@media (min-width: 900px) {
+  .banner-y-circulos {
+    margin-bottom: 175px;
+  }
+}
+/* Contenedor del banner y los enlaces circulares - Final */
+
+.banner {
+  position: relative;
+  width: 100%;
+  height: auto;
+  max-height: 100vh;
+  overflow: hidden;
+}
+
+.banner-titulo {
+  display: none;
+}
+
+.banner-titulo h1 {
+  font-family: "Montserrat", sans-serif;
+}
+
+.slider {
+  display: flex;
+  width: 400%;
+  margin-left: -100%;
+}
+
+.slider-elemento {
+  width: 100%;
+}
+
+.slider-imagen {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.slider-boton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.5);
+  font-size: 1.5rem;
+  cursor: pointer;
+  /* font-family: monospace;
+  font-size: 2rem;
+  font-weight: 700;
+  text-align: center; */
+}
+
+.slider-boton:hover {
+  background-color: white;
+}
+
+.slider-boton-izquierda {
+  left: 10px;
+}
+
+.slider-boton-derecha {
+  right: 10px;
+}
+
+@media (min-width: 900px) {
+  .banner-titulo {
+    display: block;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    color: var(--mostaza);
+    text-align: center;
+    text-shadow: rgba(0, 0, 0, 0.75) 2px 2px 1px;
+    user-select: none;
+  }
+  .banner-titulo h1 {
+    font-size: 4rem;
+    font-weight: 700;
+  }
+  .banner-titulo i {
+    font-size: 1.75rem;
+    font-weight: 500;
+  }
+}
+
+/*
+  ======================================================
+                    ENLACES CIRCULARES
+  ======================================================
+*/
+
+.enlaces-circulares {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2em;
+  position: absolute;
+  top: calc(100% - 54px);
+  width: 100%;
+  height: auto;
+  font-size: 1.375rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+.enlaces-circulares a {
+  color: white;
+}
+
+.enlaces-circulares a:nth-child(1),
+.enlaces-circulares a:nth-child(3) {
+  display: none;
+}
+
+.enlace-circular {
+  box-sizing: border-box;
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 192px;
+  height: 192px;
+  border: 12px solid white;
+  border-radius: 50%;
+  background-color: var(--azul-zafiro);
+  transition: box-shadow 0.5s;
+}
+
+.enlace-circular:hover {
+  box-shadow: 0px 0px 40px 0px var(--azul-esmalte-transparente);
+}
+
+.enlace-circular i {
+  font-size: 3.5em;
+  color: var(--blanco-icon);
+}
+
+.enlace-circular p {
+  position: absolute;
+  margin: 0;
+  text-shadow: rgba(0, 0, 0, 0.5) 2px 2px 1px;
+}
+
+.enlace-circular p span {
+  display: block;
+}
+
+@media (min-width: 750px) {
+  .enlaces-circulares a:nth-child(1),
+  .enlaces-circulares a:nth-child(3) {
+    display: block;
+  }
+  .enlaces-circulares {
+    top: calc(100% - 96px);
+  }
+}
+
+@media (min-width: 900px) {
+  .enlaces-circulares a:nth-child(2) .enlace-circular {
+    width: 224px;
+    height: 224px;
+  }
+  .enlaces-circulares {
+    top: calc(100% - 54px);
+  }
+  .enlaces-circulares a:nth-child(2) i {
+    font-size: 5.25em;
+  }
+}
+
+/*
+  ===================================================
+                   SECCIÓN PRINCIPAL
+  ===================================================
+*/
+
+main {
+  width: 80%;
+  max-width: 900px;
+  margin: 0 auto 2em;
+}
+
+main h1 {
+  font-size: 1.75rem;
+  text-align: center;
+}
+
+main p {
+  line-height: 1.5rem;
+}
+
+main h1 span {
+  display: block;
+}
+
+@media (min-width: 550px) {
+  main h1 {
+    font-size: 2.25rem;
+  }
+}
+
+@media (min-width: 900px) {
+  main h1 span {
+    display: inline;
+  }
+}
+
+/*
+  ============================================================
+                      SERVICIOS DESTACADOS
+  ============================================================
+*/
+
+.servicios {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.servicios-encabezado {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  background-color: var(--turquesa-vikingo);
+  background-image: url("/static/images/servicios/servicios-encabezado.jpg");
+  background-position: center;
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-shadow: 2px 2px black;
+}
+
+.servicios-ofrecidos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 260px);
+  grid-auto-rows: auto;
+  row-gap: 2em;
+  column-gap: 2em;
+  justify-content: center;
+  margin: 2em 0;
+}
+
+.servicio-ofrecido {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  height: 100%;
+  margin: 0;
+  color: var(--azul-esmalte);
+  transition: color 0.2s;
+}
+
+.servicio-ofrecido:hover {
+  color: var(--turquesa-vikingo);
+}
+
+.servicio-ofrecido h3 {
+  margin-bottom: 0.25em;
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.5rem;
+}
+
+.servicio-ofrecido img {
+  box-sizing: border-box;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  object-position: center;
+  border: 3px solid var(--azul-esmalte);
+  transition: border-color 0.2s;
+}
+
+.servicio-ofrecido img:hover {
+  border-color: var(--turquesa-vikingo);
+}
+
+@media (min-width: 750px) {
+  .servicios {
+    width: 90%;
+  }
+  .servicios-encabezado {
+    border: 2px solid black;
+    border-radius: 25px;
+    height: 300px;
+    font-size: 2.5rem;
+  }
+}
+
+@media (min-width: 900px) {
+  .servicios-encabezado {
+    background-attachment: fixed;
+  }
+}
+
+/*
+  ===========================================================================
+                           UBICACIÓN DEL CONSULTORIO
+  ===========================================================================
+*/
+
+.ubicacion {
+  height: 450px;
+}
+
+.ubicacion-mapa {
+  width: 100%;
+  height: 450px;
+}
+
+.ubicacion-direccion {
+  display: none;
+}
+
+@media (min-width: 750px) {
+  .ubicacion {
+    position: relative;
+  }
+  .ubicacion-direccion {
+    box-sizing: border-box;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 275px;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1em;
+    background-color: black;
+    color: white;
+    font-weight: 700;
+    text-align: center;
+    line-height: 1.75rem;
+  }
+  .ubicacion-logo {
+    -webkit-user-drag: none;
+    width: 100%;
+  }
+  .ubicacion-direccion p span {
+    display: block;
+  }
+}
+
+@media (min-width: 900px) {
+  .ubicacion-direccion {
+    right: 75px;
+    width: 25%;
+    min-width: 275px;
+  }
+}
+
+/*
+  ===========================
+           SERVICIOS
+  ===========================
+*/
+
+@media (min-width: 1000px) {
+  .servicios-title {
+    margin-left: 0.5em;
+    font-size: 5rem;
+    text-align: left;
+  }
+}
+
+/*
+  ==========================================
+                SOBRE NOSOTROS
+  ==========================================
+*/
+
+.sobre-nosotros-imagen {
+  width: 60%;
+}
+
+@media (min-width: 1000px) {
+  .sobre-nosotros-title {
+    margin-left: 0.5em;
+    font-size: 5rem;
+    text-align: left;
+  }
+}
+
+/*
+  =========================================================
+                     PÁGINA DE CONTACTOS
+  =========================================================
+*/
+
+.contacto-formulario form {
+  padding-top: 0;
+}
+
+.elemento-formulario {
+  margin-bottom: 1em;
+}
+
+.contacto-principal {
+  line-height: 1.5rem;
+}
+
+.contacto-principal p {
+  margin-top: 0;
+}
+
+.contacto-mapa {
+  width: 100%;
+}
+
+@media (min-width: 1000px) {
+  .contacto-title {
+    margin-left: 0.5em;
+    font-size: 5rem;
+    text-align: left;
+  }
+  .contacto-formulario {
+    width: 25%;
+  }
+  .contacto-principal {
+    width: 45%;
+  }
+  .contacto-detalles {
+    width: 25%;
+  }
+}

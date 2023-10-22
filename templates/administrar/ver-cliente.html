@@ -1,0 +1,78 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/administrar-citas.css' %}">
+  <title>Ver cliente | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <div class="contenedor-tablas">
+    <h1 class="titulo">Ver cliente</h1>
+    <table class="tabla-visualizar">
+      <tr>
+        <th>Cédula de Identidad</th>
+        <td>{{ cliente.nacionalidad.cod_nacionalidad }}-{{ cliente.ci_cliente }}</td>
+      </tr>
+      <tr>
+        <th>Nombres</th>
+        <td>{{ cliente.nombres }}</td>
+      </tr>
+      <tr>
+        <th>Apellidos</th>
+        <td>{{ cliente.apellidos }}</td>
+      </tr>
+      <tr>
+        <th>Fecha de nacimiento</th>
+        <td>{{ cliente.fecha_nacimiento }}</td>
+      </tr>
+      <tr>
+        <th>Sexo</th>
+        <td>{{ cliente.sexo.descripcion_sexo }}</td>
+      </tr>
+      <tr>
+        <th>Dirección</th>
+        {% if cliente.direccion %}
+          <td>{{ cliente.direccion }}</td>
+        {% else %}
+          <td>-</td>
+        {% endif %}
+      </tr>
+      <tr>
+        <th>Necesidad especial</th>
+        <td>{{ cliente.necesidad_especial.descripcion_necesidad_especial }}</td>
+      </tr>
+      {% for telefono_cliente in telefonos_cliente %}
+        {% if forloop.counter == 1 %}
+          <tr>
+            <th rowspan="{{ telefonos_cliente|length }}">Teléfonos</th>
+            <td>{{ telefono_cliente }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td>{{ telefono_cliente }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      {% for email_cliente in emails_cliente %}
+        {% if forloop.counter == 1 %}
+          <tr>
+            <th rowspan="{{ emails_cliente|length }}">Correos electrónicos</th>
+            <td>{{ email_cliente }}</td>
+          </tr>
+        {% else %}
+          <tr>
+            <td>{{ email_cliente }}</td>
+          </tr>
+        {% endif %}
+      {% endfor %}
+      {% if familiar %}
+        <tr>
+          <th>Familiar</th>
+          <td>{{ familiar.familiar.nombres }} {{ familiar.familiar.apellidos }} | {{ familiar.parentesco }}</td>
+        </tr>
+      {% endif %}
+    </table>
+  </div>
+{% endblock %}

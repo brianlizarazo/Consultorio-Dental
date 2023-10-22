@@ -1,0 +1,153 @@
+/*
+  =================================
+             FORMULARIOS
+  =================================
+*/
+
+br,
+.label-oculta {
+  display: none;
+}
+
+.contenedor-formulario {
+  width: 80%;
+  min-width: 400px;
+  max-width: 550px;
+  margin: 2em auto;
+  text-align: center;
+}
+
+.contenedor-formulario h1 {
+  color: var(--azul-picton);
+  font-size: 3.75rem;
+  text-shadow: 2px 2px black;
+}
+
+.contenedor-formulario p {
+  margin: 0 0 0.5em;
+  color: var(--azul-picton);
+  font-weight: 600;
+}
+
+form {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 20px;
+  color: black;
+  text-align: left;
+}
+
+.contenedor-campo {
+  margin-bottom: 2em;
+}
+
+label {
+  display: block;
+  margin-bottom: 0.5em;
+  color: var(--azul-picton);
+  font-weight: 600;
+}
+
+.label-radio {
+  display: inline;
+  margin: 0;
+}
+
+input,
+select,
+textarea {
+  box-sizing: border-box;
+  border: none;
+  outline: none;
+  font-family: "Montserrat", sans-serif;
+}
+
+textarea {
+  resize: none;
+}
+
+.campo {
+  width: 100%;
+  border: solid 1px var(--azul-picton);
+  border-radius: 5px;
+  padding: 10px 15px;
+}
+
+.contenedor-radio {
+  margin-top: 0.5em;
+}
+
+.campo:focus {
+  box-shadow: var(--azul-picton) 0px 0px 10px 0px;
+}
+
+#datos-personales-cliente,
+#agregar-pariente {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s linear;
+}
+
+.cedula {
+  display: flex;
+  justify-content: space-between;
+}
+
+.nacionalidad {
+  width: 15%;
+}
+
+.nci {
+  width: 80%;
+}
+
+.agregar-y-remover {
+  margin-bottom: 0.5em;
+  font-size: 0.875rem;
+  font-weight: 400;
+  cursor: pointer;
+}
+
+.remover-telefono,
+.remover-email {
+  display: none;
+}
+
+.telefono,
+.email {
+  margin-bottom: 1em;
+}
+
+.boton {
+  padding: 10px 0;
+  border: 1px solid var(--azul-picton);
+  border-radius: 20px;
+  background-color: white;
+  color: var(--azul-picton);
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition-duration: 200ms;
+}
+
+.boton-small {
+  width: 150px;
+  height: 40px;
+}
+
+.boton-grande {
+  width: 250px;
+  height: 40px;
+}
+
+.boton:hover {
+  background-color: var(--azul-picton);
+  color: white;
+}
+
+#motivo-ausencia {
+  height: 0;
+  overflow: hidden;
+  transition: height 0.5s linear;
+}

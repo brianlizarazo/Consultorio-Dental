@@ -1,0 +1,53 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/administrar-citas.css' %}" />
+  <title>Administrar doctores | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <div class="contenedor-tablas">
+    <h1 class="titulo">Administrar doctores</h1>
+    <div class="a-la-derecha">
+      <a href="agregar-doctor" class="boton boton-aceptar">Agregar doctor</a>
+    </div>
+    <table class="tabla-personalizada">
+      <thead>
+        <tr>
+          <th>CI</th>
+          <th>Nombres</th>
+          <th>Apellidos</th>
+          <th>Fecha de nacimiento</th>
+          <th>Sexo</th>
+          <th>Especialidad</th>
+          <th>Opciones</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for doctor in doctores %}
+          <tr>
+            <td data-etiqueta="Cédula de Identidad" class="campo-resaltado">
+              <a href="ver-doctor/{{ doctor.ci_doctor }}">{{ doctor.nacionalidad.cod_nacionalidad }}-{{ doctor.ci_doctor }}</a>
+            </td>
+            <td data-etiqueta="Nombres">{{ doctor.nombres }}</td>
+            <td data-etiqueta="Apellidos">{{ doctor.apellidos }}</td>
+            <td data-etiqueta="Fecha de nacimiento">{{ doctor.fecha_nacimiento|date:"d \d\e F \d\e Y" }}</td>
+            <td data-etiqueta="Sexo">{{ doctor.sexo.descripcion_sexo }}</td>
+            <td data-etiqueta="Especialidad">{{ doctor.especialidad.descripcion_especialidad }}</td>
+            <td data-etiqueta="Opciones">
+              <a href="actualizar-doctor/{{ doctor.ci_doctor }}" class="boton boton-modificar">Actualizar</a>
+              <a href="despedir-doctor/{{ doctor.ci_doctor }}" class="boton boton-rechazar despedir-doctor">Despedir</a>
+            </td>
+          </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'js/administrar-doctores.js' %}"></script>
+{% endblock %}

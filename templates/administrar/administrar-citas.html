@@ -1,0 +1,133 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/administrar-citas.css' %}" />
+  <title>Administrar citas | Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <div class="contenedor-tablas">
+    <h1 class="titulo">Citas solicitadas</h1>
+    {% if citas %}
+      <table class="tabla-personalizada">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo de la cita</th>
+            <th>Urgencia</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cita in citas %}
+            <tr>
+              <td data-etiqueta="ID" class="campo-resaltado">
+                <a href="ver-cita/{{ cita.id_cita }}">{{ cita.id_cita }}</a>
+              </td>
+              <td data-etiqueta="Cliente" class="campo-resaltado">
+                <a href="ver-cliente/{{ cita.cliente.ci_cliente }}">{{ cita.cliente.nacionalidad.cod_nacionalidad }}-{{ cita.cliente.ci_cliente }}</a>
+              </td>
+              <td data-etiqueta="Fecha">{{ cita.fecha|date:"l, d \d\e F \d\e Y" }}</td>
+              <td data-etiqueta="Hora">{{ cita.hora|date:"h:i a" }}</td>
+              <td data-etiqueta="Motivo de la cita">{{ cita.motivo.descripcion_motivo }}</td>
+              <td data-etiqueta="Urgencia">{{ cita.urgencia.descripcion_urgencia }}</td>
+              <td data-etiqueta="Opciones">
+                <a href="aceptar-cita/{{ cita.id_cita }}" class="boton boton-aceptar aceptar-cita">Aceptar</a>
+                <a href="rechazar-cita/{{ cita.id_cita }}" class="boton boton-rechazar rechazar-cita">Rechazar</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-hay-citas">No hay citas solicitadas por el momento</p>
+    {% endif %}
+
+    <h1 class="titulo">Citas aceptadas</h1>
+    {% if citas_aceptadas %}
+      <table class="tabla-personalizada">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo de la cita</th>
+            <th>Urgencia</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cita_aceptada in citas_aceptadas %}
+            <tr>
+              <td data-etiqueta="ID" class="campo-resaltado">
+                <a href="ver-cita/{{ cita_aceptada.cita.id_cita }}">{{ cita_aceptada.cita.id_cita }}</a>
+              </td>
+              <td data-etiqueta="Cliente" class="campo-resaltado">
+                <a href="ver-cliente/{{ cita_aceptada.cita.cliente.ci_cliente }}">{{ cita_aceptada.cita.cliente.nacionalidad.cod_nacionalidad }}-{{ cita_aceptada.cita.cliente.ci_cliente }}</a>
+              </td>
+              <td data-etiqueta="Fecha">{{ cita_aceptada.cita.fecha|date:"l, d \d\e F \d\e Y" }}</td>
+              <td data-etiqueta="Hora">{{ cita_aceptada.cita.hora|date:"h:i a" }}</td>
+              <td data-etiqueta="Motivo de la cita">{{ cita_aceptada.cita.motivo.descripcion_motivo }}</td>
+              <td data-etiqueta="Urgencia">{{ cita_aceptada.cita.urgencia.descripcion_urgencia }}</td>
+              <td data-etiqueta="Opciones">
+                <a href="modificar-cita-aceptada/{{ cita_aceptada.cita.id_cita }}" class="boton boton-modificar">Modificar</a>
+                <a href="quitar-cita-aceptada/{{ cita_aceptada.cita.id_cita }}" class="boton boton-deshacer quitar-cita-aceptada">Deshacer</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-hay-citas">No hay citas aceptadas por el momento</p>
+    {% endif %}
+
+    <h1 class="titulo">Citas rechazadas</h1>
+    {% if citas_rechazadas %}
+      <table class="tabla-personalizada">
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Cliente</th>
+            <th>Fecha</th>
+            <th>Hora</th>
+            <th>Motivo de la cita</th>
+            <th>Urgencia</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for cita_rechazada in citas_rechazadas %}
+            <tr>
+              <td data-etiqueta="ID" class="campo-resaltado">
+                <a href="ver-cita/{{ cita_rechazada.cita.id_cita }}">{{ cita_rechazada.cita.id_cita }}</a>
+              </td>
+              <td data-etiqueta="Cliente" class="campo-resaltado">
+                <a href="ver-cliente/{{ cita_rechazada.cita.cliente.ci_cliente }}">{{ cita_rechazada.cita.cliente.nacionalidad.cod_nacionalidad }}-{{ cita_rechazada.cita.cliente.ci_cliente }}</a>
+              </td>
+              <td data-etiqueta="Fecha">{{ cita_rechazada.cita.fecha|date:"l, d \d\e F \d\e Y" }}</td>
+              <td data-etiqueta="Hora">{{ cita_rechazada.cita.hora|date:"h:i a" }}</td>
+              <td data-etiqueta="Motivo de la cita">{{ cita_rechazada.cita.motivo.descripcion_motivo }}</td>
+              <td data-etiqueta="Urgencia">{{ cita_rechazada.cita.urgencia.descripcion_urgencia }}</td>
+              <td data-etiqueta="Opciones">
+                <a href="quitar-cita-rechazada/{{ cita_rechazada.cita.id_cita }}" class="boton boton-deshacer quitar-cita-rechazada">Deshacer</a>
+              </td>
+            </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    {% else %}
+      <p class="no-hay-citas">No hay citas rechazadas por el momento</p>
+    {% endif %}
+  </div>
+{% endblock %}
+
+{% block scripts %}
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <script src="{% static 'js/administrar-citas.js' %}"></script>
+{% endblock %}

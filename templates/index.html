@@ -1,0 +1,181 @@
+{% extends 'plantilla.html' %}
+
+{% load static %}
+
+{% block head %}
+  <link rel="stylesheet" href="{% static 'css/superponer-header-y-navbar.css' %}" />
+  <title>Clínica Dental Díaz</title>
+{% endblock %}
+
+{% block body %}
+  <!-- Contenedor del banner slider y los enlaces circulares -->
+  <div class="banner-y-circulos">
+    <!-- Slider de imágenes del consultorio -->
+    <section class="banner">
+      <div class="banner-titulo">
+        {% if request.session.username %}
+          <h1>¡Bienvenido {{ request.session.username | lower }}!</h1>
+          <i>Recuerda cerrar sesión al terminar</i>
+        {% else %}
+          <h1>Clínica Dental Díaz</h1>
+          <i>Una razón para sonreir</i>
+        {% endif %}
+      </div>
+      <div class="slider" id="slider">
+        <div class="slider-elemento">
+          <img src="{% static 'images/banner/slider-1.jpg' %}" alt="" class="slider-imagen">
+        </div>
+        <div class="slider-elemento">
+          <img src="{% static 'images/banner/slider-2.jpeg' %}" alt="" class="slider-imagen">
+        </div>
+        <div class="slider-elemento">
+          <img src="{% static 'images/banner/slider-3.jpeg' %}" alt="" class="slider-imagen">
+        </div>
+        <div class="slider-elemento">
+          <img src="{% static 'images/banner/slider-4.jpg' %}" alt="" class="slider-imagen">
+        </div>
+      </div>
+      <div class="slider-boton slider-boton-izquierda" id="boton-izquierda">
+        <i class="fa-solid fa-angle-left"></i>
+      </div>
+      <div class="slider-boton slider-boton-derecha" id="boton-derecha">
+        <i class="fa-solid fa-angle-right"></i>
+      </div>
+    </section>
+
+    <!-- Enlaces con forma de círculo -->
+    <section class="enlaces-circulares">
+      <a href="/sobre-nosotros">
+        <div class="enlace-circular">
+          <i class="fa-solid fa-users"></i>
+          <p>
+            <span>¿Por qué</span>
+            <span>nosotros?</span>
+          </p>
+        </div>
+      </a>
+      {% if request.session.username %}
+      <a href="/administrar-citas">
+        <div class="enlace-circular">
+          <i class="fa-solid fa-calendar-days"></i>
+          <p>
+            <span>Administrar</span>
+            <span>citas</span>
+          </p>
+        </div>
+      </a>
+      {% else %}
+      <a href="/solicitar-cita">
+        <div class="enlace-circular">
+          <i class="fa-solid fa-calendar-days"></i>
+          <p>
+            <span>Solicitar</span>
+            <span>una cita</span>
+          </p>
+        </div>
+      </a>
+      {% endif %}
+      <a href="#ubicacion">
+        <div class="enlace-circular">
+          <i class="fa-solid fa-map-location-dot"></i>
+          <p>Ubicación</p>
+        </div>
+      </a>
+    </section>
+  </div>
+
+  <!-- Breve descripción del consultorio -->
+  <main>
+    <h1>
+      <span>Te damos la bienvenida a</span>
+      <span>Clínica Dental Díaz</span>
+    </h1>
+    <!-- Tentativamente, se puede colocar un video -->
+    <p>Te damos la bienvenida y gracias por visitar el sitio web de la Clínica Dental Díaz, su consultorio local en Los Teques. Entendemos que la construcción de relaciones basadas en la confianza es esencial para lograr resultados exitosos en el tratamiento.</p>
+    <p>Con la última tecnología y más de 30 años de experiencia, la Clínica Dental Díaz es un consultorio de confianza en Los Teques.</p>
+    <p>Nuestra filosofía de la práctica es darle el tipo de odontología que usted sueña sin comprometer la estabilidad y la longevidad de su trabajo dental.</p>
+    <p>Nuestro trabajo se lleva a cabo de forma exhaustiva y suave. No tratamos dientes, ¡tratamos seres humanos!</p>
+    <p>Por favor, siéntase libre de explorar nuestro sitio web para obtener más información sobre el excelente nivel de atención que ofrecemos. Llámenos hoy para cualquier información adicional que pueda necesitar, o para programar una cita para la atención. También puede enviar nuestro cómodo formulario de solicitud de cita en línea.</p>
+  </main>
+
+  <!-- Servicios destacados -->
+  <section class="servicios">
+    <div class="servicios-encabezado">
+      <h2>Algunos de nuestros servicios</h2>
+    </div>
+    <div class="servicios-ofrecidos">
+      <a href="/servicios/odontologia-general">
+        <div class="servicio-ofrecido">
+          <h3>Odontología general</h3>
+          <img src="{% static 'images/servicios/odontologia-general.jpg' %}" alt="Odontología general" />
+        </div>
+      </a>
+      <a href="/servicios/limpieza-dental">
+        <div class="servicio-ofrecido">
+          <h3>Limpieza dental</h3>
+          <img src="{% static 'images/servicios/limpieza-dental.jpg' %}" alt="Limpieza dental" />
+        </div>
+      </a>
+      <a href="/servicios/periodoncia">
+        <div class="servicio-ofrecido">
+          <h3>Periodoncia</h3>
+          <img src="{% static 'images/servicios/periodoncia.jpg' %}" alt="Periodoncia" />
+        </div>
+      </a>
+      <a href="/servicios/protesis-removibles">
+        <div class="servicio-ofrecido">
+          <h3>Prótesis removibles</h3>
+          <img src="{% static 'images/servicios/protesis-removibles.jpg' %}" alt="Prótesis removibles" />
+        </div>
+      </a>
+      <a href="/servicios/tratamiento-de-caries">
+        <div class="servicio-ofrecido">
+          <h3>Tratamiento de caries</h3>
+          <img src="{% static 'images/servicios/tratamiento-de-caries.jpg' %}" alt="Tratamiento de caries" />
+        </div>
+      </a>
+      <a href="/servicios/tratamiento-de-conducto">
+        <div class="servicio-ofrecido">
+          <h3>Tratamiento de conducto</h3>
+          <img src="{% static 'images/servicios/tratamiento-de-conducto.jpg' %}" alt="Tratamiento de conducto" />
+        </div>
+      </a>
+      <a href="/servicios/evaluacion-radiografica">
+        <div class="servicio-ofrecido">
+          <h3>Evaluación clínica y radiográfica</h3>
+          <img src="{% static 'images/servicios/evaluacion-clinica-y-radiografica.jpeg' %}" alt="Evaluación clínica y radiográfica" />
+        </div>
+      </a>
+      <a href="/servicios/coronas-y-puentes">
+        <div class="servicio-ofrecido">
+          <h3>Coronas y puentes</h3>
+          <img src="{% static 'images/servicios/coronas-y-puentes.jpg' %}" alt="Coronas y puentes" />
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Ubicación del consultorio -->
+  <section class="ubicacion" id="ubicacion">
+    <!-- Mapa del consultorio -->
+    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d981.2450131853361!2d-67.0401488897866!3d10.343479842436771!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8c2a8d64f4810c4f%3A0xa05be044edb10f21!2sGrupo%20M%C3%A9dico%20Torre%20Royal!5e0!3m2!1ses-419!2sve!4v1673315489481!5m2!1ses-419!2sve" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade" class="ubicacion-mapa"></iframe>
+
+    <!-- Dirección y contacto del consultorio -->
+    <div class="ubicacion-direccion">
+      <img src="{% static 'images/logo.png' %}" alt="logo" class="ubicacion-logo" />
+      <p>
+        <span>Avenida Bermúdez, Torre Royal, Piso 3, Oficina 32.</span>
+        <span>Los Teques - Edo. Miranda</span>
+      </p>
+      <p>
+        <span>Contáctanos</span>
+        <span>0212-3215062</span>
+        <span>0414-1240945</span>
+      </p>
+    </div>
+  </section>
+{% endblock %}
+
+{% block scripts %}
+  <script src="{% static 'js/slider.js' %}"></script>
+{% endblock %}

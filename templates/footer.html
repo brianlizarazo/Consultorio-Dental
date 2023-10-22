@@ -1,0 +1,106 @@
+{% load static %}
+
+<!-- Footer del sitio web -->
+<footer>
+  <!-- Aspectos principales del footer -->
+  <div class="footer-principal">
+    <!-- Breve descripción del consultorio y sus redes sociales -->
+    <div class="footer-acerca-de">
+      <img src="{% static 'images/logo.png' %}" alt="logo" class="footer-acerca-de-logo">
+      <p>
+        Con más de 30 años de experiencia y la última tecnología en Los Teques,
+        la Clínica Dental Díaz proporciona un cuidado dental como nunca antes
+        has experimentado ¡Te mereces lo mejor!
+      </p>
+      <div class="footer-acerca-de-redes">
+        <ul class="lista">
+          <li><i class="fa-brands fa-square-facebook"></i></li>
+          <li>
+            <a
+              href="https://www.instagram.com/dentistadromandiaz/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <i class="fa-brands fa-instagram"></i>
+            </a>
+          </li>
+          <li><i class="fa-brands fa-twitter"></i></li>
+          <li><i class="fa-brands fa-youtube"></i></li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Enlaces rápidos para navegar por el sitio web -->
+    <div class="footer-enlaces">
+      <h2>Enlaces rápidos</h2>
+      <ul class="lista">
+        <li><a href="/">Inicio</a></li>
+        {% if request.session.username %}
+          <li><a href="/administrar-citas">Administrar citas</a></li>
+        {% else %}
+          <li><a href="/solicitar-cita">Solicitar una cita</a></li>
+        {% endif %}
+        {% if request.session.username %}
+          <li><a href="/administrar-doctores">Administrar doctores</a></li>
+        {% else %}
+          <li><a href="/sobre-nosotros">Sobre nosotros</a></li>
+        {% endif %}
+        <li><a href="/contactos">Contáctanos</a></li>
+        {% if request.session.username %}
+          <li><a href="logout">Cerrar sesión</a></li>
+        {% else %}
+          <li><a href="login">Iniciar sesión</a></li>
+        {% endif %}
+      </ul>
+    </div>
+
+    <!-- Horarios de atención del consultorio -->
+    <div class="footer-horarios">
+      <h2>Horarios de atención</h2>
+      <table>
+        <tr>
+          <td>Lunes</td>
+          <td>8:30 a. m. - 3:30 p. m.</td>
+        </tr>
+        <tr>
+          <td>Martes</td>
+          <td>Cerrado</td>
+        </tr>
+        <tr>
+          <td>Miércoles</td>
+          <td>8:30 a. m. - 3:30 p. m.</td>
+        </tr>
+        <tr>
+          <td>Jueves</td>
+          <td>Cerrado</td>
+        </tr>
+        <tr>
+          <td>Viernes</td>
+          <td>8:30 a. m. - 3:30 p. m.</td>
+        </tr>
+        <tr>
+          <td>Sábado</td>
+          <td>Cerrado</td>
+        </tr>
+        <tr>
+          <td>Domingo</td>
+          <td>Cerrado</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- Copyright de la empresa -->
+  <div class="footer-copyright" id="footer-copyright"></div>
+</footer>
+
+
+<script>
+  const copyrightFooter = `
+    <p>
+        <span>&copy; ${new Date().getFullYear()} Clínica Dental Díaz C. A.</span>
+        <span>RIF: V-11817088-8. Todos los derechos reservados</span>
+    </p>
+ `;
+ document.getElementById('footer-copyright').innerHTML = copyrightFooter;
+</script>
